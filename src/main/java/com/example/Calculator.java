@@ -45,6 +45,6 @@ public class Calculator {
 
     // INTENTIONAL DUPLICATION 
     public int addAgain(int a, int b) { 
-    return a + b; 
-} 
+        return a + b; 
+    }
 }

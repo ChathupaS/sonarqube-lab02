@@ -31,12 +31,15 @@ public class UserService {
 
     // EVEN WORSE: another SQL injection 
     public void deleteUser(String username) throws Exception { 
-    Connection conn = 
-    DriverManager.getConnection("jdbc:mysql://localhost/db", 
-    "root", password); 
-    Statement st = conn.createStatement(); 
-    String query = 
-    "DELETE FROM users WHERE name = '" + username + "'"; 
-    st.execute(query); 
-} 
+
+        Connection conn = 
+            DriverManager.getConnection("jdbc:mysql://localhost/db", 
+                "root", password); 
+
+        Statement st = conn.createStatement(); 
+
+        String query = 
+            "DELETE FROM users WHERE name = '" + username + "'"; 
+        st.execute(query); 
+    } 
 }
