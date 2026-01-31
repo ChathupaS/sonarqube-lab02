@@ -29,8 +29,6 @@ class UserServiceTest {
     void testNotUsedMethod() {
         UserService service = new UserService();
         // This should not throw any exception
-        assertDoesNotThrow(() -> {
-            service.notUsed();
-        });
+        assertDoesNotThrow(service::notUsed);
     }
 }
