@@ -3,10 +3,10 @@ package com.example;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class UserServiceTest {
+class UserServiceTest {
     
     @Test
-    public void testFindUser() {
+    void testFindUser() {
         UserService service = new UserService();
         
         // This will fail due to no database, but will cover the code
@@ -16,7 +16,7 @@ public class UserServiceTest {
     }
     
     @Test
-    public void testDeleteUser() {
+    void testDeleteUser() {
         UserService service = new UserService();
         
         // This will fail due to no database, but will cover the code
@@ -26,7 +26,7 @@ public class UserServiceTest {
     }
     
     @Test
-    public void testNotUsedMethod() {
+    void testNotUsedMethod() {
         UserService service = new UserService();
         // This should not throw any exception
         assertDoesNotThrow(() -> {
