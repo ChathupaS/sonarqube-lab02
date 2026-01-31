@@ -25,10 +25,4 @@ class UserServiceTest {
         });
     }
     
-    @Test
-    void testNotUsedMethod() {
-        UserService service = new UserService();
-        // This should not throw any exception
-        assertDoesNotThrow(service::notUsed);
-    }
 }

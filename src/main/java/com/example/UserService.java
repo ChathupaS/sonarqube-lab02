@@ -2,44 +2,39 @@ package com.example;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 
 public class UserService {
 
     // SECURITY ISSUE: Hardcoded credentials
     private String password = "admin123";
 
-    // VULNERABILITY: SQL Injection
+    // FIXED: SQL Injection prevented using PreparedStatement
     public void findUser(String username) throws java.sql.SQLException {
+
+        String query = "SELECT id, name, email FROM users WHERE name = ?";
 
         try (Connection conn =
                 DriverManager.getConnection("jdbc:mysql://localhost/db",
                         "root", password);
-             Statement st = conn.createStatement()) {
+             PreparedStatement pst = conn.prepareStatement(query)) {
 
-            String query =
-                "SELECT * FROM users WHERE name = '" + username + "'";
-
-            st.executeQuery(query);
+            pst.setString(1, username);
+            pst.executeQuery();
         }
     }
 
-    // SMELL: Unused method
-    public void notUsed() {
-        System.out.println("I am never called");
-    }
-
-    // EVEN WORSE: another SQL injection 
     public void deleteUser(String username) throws java.sql.SQLException { 
+
+        String query = "DELETE FROM users WHERE name = ?";
 
         try (Connection conn = 
                 DriverManager.getConnection("jdbc:mysql://localhost/db", 
                     "root", password);
-             Statement st = conn.createStatement()) {
+             PreparedStatement pst = conn.prepareStatement(query)) {
 
-            String query = 
-                "DELETE FROM users WHERE name = '" + username + "'"; 
-            st.execute(query);
+            pst.setString(1, username);
+            pst.execute();
         }
     } 
 }
