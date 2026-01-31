@@ -10,7 +10,7 @@ public class UserService {
     private String password = "admin123";
 
     // VULNERABILITY: SQL Injection
-    public void findUser(String username) throws Exception {
+    public void findUser(String username) throws java.sql.SQLException {
 
         try (Connection conn =
                 DriverManager.getConnection("jdbc:mysql://localhost/db",
@@ -30,7 +30,7 @@ public class UserService {
     }
 
     // EVEN WORSE: another SQL injection 
-    public void deleteUser(String username) throws Exception { 
+    public void deleteUser(String username) throws java.sql.SQLException { 
 
         try (Connection conn = 
                 DriverManager.getConnection("jdbc:mysql://localhost/db", 
